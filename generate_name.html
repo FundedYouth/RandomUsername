@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="output"></div>
+<script>
+
+    const funWords = ["Bumble", "Giggle", "Wiggle", "Jellybean", "Tickle",
+    "Rainbow", "Sprinkle", "Bubble", "Doodle", "Snuggle",
+    "Whisker", "Glimmer", "Twinkle", "Zigzag", "Wobble",
+    "Fuzzy", "Hiccup", "Puddle", "Squiggle", "Giggly",
+    "Bouncy", "Flutter", "Silly", "Waddle", "Glimpse",
+    "Snicker", "Whistle", "Jumpy", "Scoot", "Bubbly",
+    "Wiggly", "Gurgle", "Tumble", "Popsicle", "Snazzy",
+    "Whiz", "Jolly", "Swoosh", "Flicker", "Bop",
+    "Wacky", "Giddy", "Twirly", "Pizzazz", "Snappy",
+    "Whirl", "Jazzy", "Swirl", "Zany", "Frolic"];
+
+    const animalTypes = ["Aardvark", "Albatross", "Alligator", "Alpaca", "Ant",
+    "Anteater", "Antelope", "Armadillo", "Baboon", "Badger",
+    "Barracuda", "Bat", "Bear", "Beaver", "Bee",
+    "Bison", "Boar", "Buffalo", "Butterfly", "Camel",
+    "Capybara", "Caribou", "Cassowary", "Cat", "Caterpillar",
+    "Cheetah", "Chicken", "Chimpanzee", "Chinchilla", "Cobra",
+    "Cockroach", "Cod", "Cormorant", "Coyote", "Crab",
+    "Crane", "Crocodile", "Crow", "Deer", "Dingo",
+    "Dolphin", "Donkey", "Dove", "Dragonfly", "Duck",
+    "Eagle", "Echidna", "Eel", "Elephant", "Elk",
+    "Falcon", "Ferret", "Finch", "Fish", "Flamingo",
+    "Fox", "Frog", "Gazelle", "Gecko", "Giraffe",
+    "Goat", "Goldfish", "Goose", "Gorilla", "Grasshopper",
+    "Grouse", "Gull", "Hamster", "Hawk", "Hedgehog",
+    "Heron", "Hippopotamus", "Hornet", "Horse", "Hummingbird",
+    "Hyena", "Iguana", "Impala", "Jackal", "Jaguar",
+    "Jay", "Jellyfish", "Kangaroo", "Kingfisher", "Koala",
+    "Kookaburra", "Kudu", "Ladybug", "Lemur", "Leopard",
+    "Lion", "Lizard", "Llama", "Lobster", "Lynx",
+    "Macaw", "Magpie", "Mallard", "Manatee", "Mandrill",
+    "Mantis", "Marmot", "Meerkat", "Mink", "Mole",
+    "Narwhal", "Newt", "Nightingale", "Ocelot", "Octopus",
+    "Opossum", "Orangutan", "Ostrich", "Otter", "Owl",
+    "Ox", "Panda", "Panther", "Parrot", "Peacock",
+    "Pelican", "Penguin", "Pheasant", "Pig", "Pigeon",
+    "Porcupine", "Quail", "Rabbit", "Raccoon", "Rat",
+    "Raven", "Reindeer", "Rhinoceros", "Robin", "Salamander",
+    "Salmon", "Scorpion", "Seahorse", "Seal", "Shark",
+    "Sheep", "Shrimp", "Skunk", "Sloth", "Snail",
+    "Snake", "Sparrow", "Spider", "Squid", "Squirrel",
+    "Starfish", "Stork", "Swan", "Tiger", "Toad",
+    "Tortoise", "Toucan", "Turkey", "Turtle", "Viper",
+    "Vulture", "Walrus", "Wasp", "Weasel", "Whale",
+    "Wolf", "Wombat", "Woodpecker", "Worm", "Yak",
+    "Zebra"];
+
+    function randomItem(arr) {
+        return arr[Math.floor(Math.random()*arr.length)];
+    }
+
+    function generateUsername(id) {
+        const word = randomItem(funWords);
+        const animal = randomItem(animalTypes);
+        return `${word}${animal}${id}`;
+    }
+
+    // Get the URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    // Check if name parameter exists
+    if (id) {
+        const username = generateUsername(id);
+        const jsonData = { name: username };  // Create JSON object
+        const jsonString = JSON.stringify(jsonData); // Convert to JSON string
+
+        document.getElementById('output').textContent = jsonString;
+    }
+</script>
+</body>
+</html>
